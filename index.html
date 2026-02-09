@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arafat Ahmad Sheikh | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- General Styling & Variables --- */
+        :root {
+            --primary-color: #61dafb; /* Techy Blue */
+            --secondary-color: #15171c;
+            --background-color: #16181d;
+            --text-color: #e6e6e6;
+            --card-background: #1a1c21;
+            --text-secondary-color: #b0b0b0; /* Lighter grey for secondary text */
+            --header-font: 'Poppins', sans-serif;
+            --body-font: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0; 
+            box-sizing: border-box;
+        }
+
+        html { 
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6; 
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            font-weight: 600;
+            /* Fallback for browsers that don't support gradients */
+            color: var(--primary-color); 
+            /* Gradient Text */
+            background: linear-gradient(90deg, #61dafb, #a777e3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(40, 44, 52, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Resume Button --- */
+        nav .resume-btn {
+            border: 1px solid var(--primary-color);
+            padding: 0.4rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav .resume-btn:hover {
+            background-color: var(--primary-color);
+            /* Make text color dark on hover to be readable against the light background */
+            color: var(--background-color);
+        }
+
+
+        /* --- Parallax Effect & Sections --- */
+        .parallax {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .parallax::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+        }
+
+        /* --- REPLACE THESE IMAGE URLS --- */
+        .parallax-1 {
+            background-image: url("https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070");
+        }
+        .parallax-2 {
+            min-height: 40vh; /* Shorter parallax section */
+            background-image: url("https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2070");
+        }
+        .parallax-3 {
+            min-height: 60vh;
+            background-image: url("https://images.unsplash.com/photo-1534665482403-a909d0d97c67?q=80&w=2070");
+        }
+        /* -------------------------------- */
+
+        .hero-content, .contact-content, .section-title {
+            z-index: 10;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* --- Typewriter Effect --- */
+        #typewriter-text::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: var(--primary-color);
+            font-weight: 300;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .content-section, .project-cards-section {
+            padding: 6rem 10%;
+            background-color: var(--background-color);
+        }
+        .project-cards-section {
+            padding-top: 4rem;
+        }
+
+        /* --- Project Cards --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card {
+            background: var(--card-background);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(97, 218, 251, 0.2);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tags span {
+            background: rgba(97, 218, 251, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .project-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .project-links a:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        /* --- Skills Section --- */
+        .skills-container {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- Education Section --- */
+        .education-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .education-item {
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            flex-basis: 30%;
+            min-width: 280px;
+        }
+        .education-item h3 {
+            font-size: 1.2rem;
+        }
+        .education-item p {
+            color: #ccc;
+        }
+        .education-item em {
+            color: var(--primary-color);
+            font-style: normal;
+        }
+
+
+        /* --- Contact Section --- */
+        .contact-content .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 1rem 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-content .btn:hover {
+            background-color: #fff;
+        }
+
+        /* --- Find Me Online Section --- */
+        .social-links-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .social-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 1rem 1.2rem;
+            border: 2px solid var(--card-background);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 160px;
+        }
+        .social-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            background-color: var(--card-background);
+        }
+        .social-link i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--secondary-color);
+        }
+
+        /* --- Animations --- */
+        .hidden {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateX(-100%);
+            transition: all 1s;
+        }
+
+        .show {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateX(0);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            nav ul {
+                display: none; /* Simple hiding for mobile, can be replaced with a hamburger menu */
+            }
+            .content-section, .project-cards-section {
+                padding: 4rem 5%;
+            }
+            .skills-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">AAS</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="resumeArafatAhmadSheikh(1).pdf" class="resume-btn" target="_blank">Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="parallax parallax-1">
+            <div class="hero-content">
+                <h1>Arafat Ahmad Sheikh</h1>
+                <p id="typewriter-text"></p>
+            </div>
+        </section>
+
+        <section id="about" class="content-section hidden">
+            <h2>About Me</h2>
+            <p>
+                I am a dedicated and passionate Computer Science and Engineering student at the Indian Institute of Technology, Jodhpur. With a strong foundation in algorithms, data structures, and machine learning, I enjoy building practical solutions to complex problems. My project experience spans web development with the MERN stack and machine learning applications for financial risk detection. I am driven by a desire to learn and apply my skills to create impactful technology.
+            </p>
+        </section>
+        
+        <section id="education" class="content-section hidden">
+            <h2>Education</h2>
+            <div class="education-container"></div>
+        </section>
+
+
+        <section id="projects" class="parallax parallax-2">
+             <h2 class="section-title">Projects</h2>
+        </section>
+        
+        <section class="project-cards-section hidden">
+            <div class="project-grid"></div>
+        </section>
+
+        <section id="skills" class="content-section hidden">
+            <h2>Technical Skills</h2>
+            <div class="skills-container"></div>
+        </section> 
+
+        <section id="find-me-online" class="content-section hidden">
+            <h2>Find Me Online</h2>
+            <div class="social-links-container"></div>
+        </section>
+
+        <section id="contact" class="parallax parallax-3">
+            <div class="contact-content hidden">
+                <h2>Get In Touch</h2>
+                <p>Feel free to reach out for collaborations or just a friendly chat!</p>
+                <a href="mailto:arafatahmadsheikh@gmail.com" class="btn">Email Me</a>
+                <a href="https://www.linkedin.com/in/Arafat-Ahmad-Sheikh" target="_blank" class="btn">LinkedIn</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Arafat Ahmad Sheikh.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // --- PORTFOLIO DATA (JSON-like structure) ---
+            // --- Edit your details here! ---
+
+            const educationData = [
+                {
+                    degree: 'Bachelor of Technology, CSE',
+                    institution: 'Indian Institute of Technology, Jodhpur',
+                    period: '2023 - Present',
+                    score: 'CGPA: 8.33/10' // <-- YOUR CGPA HERE
+                },
+                {
+                    degree: 'Senior Secondary (CBSE)',
+                    institution: 'Lucknow Public School',
+                    period: '2022',
+                    score: '94.2%'
+                },
+                {
+                    degree: 'Secondary (CBSE)',
+                    institution: 'Lucknow Public School',
+                    period: '2020',
+                    score: '93.5%'
+                }
+            ];
+
+            const projectData = [
+                {
+                    image: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070', // Placeholder image
+                    title: 'ShadowChat',
+                    description: 'A full-stack MERN chat application featuring real-time messaging, media sharing, and live status updates using Socket.io.',
+                    tags: ['MERN Stack', 'Socket.io', 'Tailwind CSS'],
+                    liveUrl: 'https://shadowchat-iupa.onrender.com/',
+                    codeUrl: 'https://github.com/Luv-valecha/ShadowChat'
+                },
+                {
+                    image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070', // Placeholder image
+                    title: 'Shortest Path Visualizer',
+                    description: "A web application to visualize Dijkstra's and Floyd-Warshall algorithms on a dynamic, interactive grid.",
+                    tags: ['React.js', 'JavaScript', 'CSS', 'Vite'],
+                    liveUrl: '#', // Add live link here
+                    codeUrl: 'https://github.com/Arafat-Ahmad-Sheikh/ShortestPathFinder'  // Add GitHub link here
+                },
+                {
+                    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070', // Placeholder image
+                    title: 'CodeNova',
+                    description: "A collaborative web-based code editor supporting multiple languages (C++, Python, JavaScript) with syntax highlighting, and multi-user editing.",
+                    tags: ['React.js', 'Node.js', 'Socket.io', 'Monaco Editor'],
+                    liveUrl: 'https://codenova-im2o.onrender.com/', // Add live link here when available
+                    codeUrl: 'https://github.com/Arafat-Ahmad-Sheikh/CodeNova'  // Add GitHub link here when available
+                },
+                {
+                    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070', // Placeholder image
+                    title: 'Financial Risk Detection',
+                    description: 'An ML system using various models (Logistic Regression, XGBoost, etc.) to classify financial risk, deployed via a Streamlit interface.',
+                    tags: ['Python', 'Machine Learning', 'Streamlit'],
+                    liveUrl: '#',
+                    codeUrl: 'https://github.com/Arafat-Ahmad-Sheikh/Financial_Risk_Detection'
+                },
+                {
+                    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070',
+                    title: 'AutoShare',
+                    description: 'An auto-rickshaw ride-sharing platform built to enable cost-effective commuting for IIT Jodhpur students (~26 km commute), with strict ride validation and access control.',
+                    tags: ['Django', 'Django REST Framework', 'Authentication', 'REST APIs'],
+                    liveUrl: 'https://autoshare-vru5.onrender.com/',
+                    codeUrl: '#'
+                }
+            ];
+
+            const skillsData = [
+                {
+                    category: 'Languages',
+                    skills: 'C, C++, Python, JavaScript'
+                },
+                {
+                    category: 'Tools & Technologies',
+                    skills: 'Git, VS Code, Postman, MongoDB, React.js, Node.js, MySQL'
+                },
+                {
+                    category: 'Other',
+                    skills: 'Problem Solving, Arduino, Data Structures & Algorithms'
+                }
+            ];
+
+            const socialLinksData = [
+                {
+                    name: 'GitHub',
+                    url: 'https://github.com/Arafat-Ahmad-Sheikh', // <-- ADD YOUR GITHUB URL
+                    icon: 'fab fa-github'
+                },
+                {
+                    name: 'LinkedIn',
+                    url: 'https://www.linkedin.com/in/Arafat-Ahmad-Sheikh',
+                    icon: 'fab fa-linkedin'
+                },
+                {
+                    name: 'LeetCode',
+                    url: 'https://leetcode.com/u/pRSXBLNWeS/', // <-- ADD YOUR LEETCODE URL
+                    icon: 'fas fa-code'
+                }
+            ];
+            
+
+            // --- DYNAMIC CONTENT RENDERING ---
+            // --- This code builds the HTML from your data above ---
+
+            const educationContainer = document.querySelector('.education-container');
+            educationData.forEach(edu => {
+                const item = document.createElement('div');
+                item.className = 'education-item';
+                let scoreHTML = edu.score ? `<p>${edu.score}</p>` : '';
+                item.innerHTML = `
+                    <h3>${edu.degree}</h3>
+                    <p>${edu.institution}</p>
+                    ${scoreHTML}
+                    <p><em>${edu.period}</em></p>
+                `;
+                educationContainer.appendChild(item);
+            });
+
+            const projectGrid = document.querySelector('.project-grid');
+            projectData.forEach(proj => {
+                if (!proj.title) return; // Skip empty objects
+                const card = document.createElement('div');
+                card.className = 'card';
+                // Note: Using placeholder images. Replace the URLs in the data object.
+                card.innerHTML = `
+                    <img src="${proj.image}" alt="${proj.title} project screenshot" loading="lazy">
+                    <div class="card-content">
+                        <h3>${proj.title}</h3>
+                        <p>${proj.description}</p>
+                        <div class="tags">
+                            ${proj.tags.map(tag => `<span>${tag}</span>`).join('')}
+                        </div>
+                        <div class="project-links">
+                            ${proj.liveUrl && proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+                            ${proj.codeUrl && proj.codeUrl !== '#' ? `<a href="${proj.codeUrl}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>` : ''}
+                        </div>
+                    </div>`;
+                projectGrid.appendChild(card);
+            });
+
+            const skillsContainer = document.querySelector('.skills-container');
+            skillsData.forEach(skillCat => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'skill-category';
+                categoryDiv.innerHTML = `<h3>${skillCat.category}</h3><p>${skillCat.skills}</p>`;
+                skillsContainer.appendChild(categoryDiv);
+            });
+
+            const socialContainer = document.querySelector('.social-links-container');
+            socialLinksData.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.className = 'social-link';
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.innerHTML = `<i class="${link.icon}"></i><span>${link.name}</span>`;
+                socialContainer.appendChild(a);
+            });
+
+            // --- Typewriter Effect ---
+            const typewriterElement = document.getElementById('typewriter-text');
+            const textToType = "3rd year Computer Science Student at IIT Jodhpur";
+            let charIndex = 0;
+
+            function type() {
+                if (charIndex < textToType.length) {
+                    typewriterElement.textContent += textToType.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, 100); // Adjust typing speed here (in ms)
+                }
+            }
+
+            // Start the effect after a short delay to let the page settle
+            setTimeout(type, 500);
+
+
+            // --- Smooth Scrolling for Navbar Links ---
+            const navLinks = document.querySelectorAll('nav a');
+
+            navLinks.forEach(link => {
+                // Only apply smooth scrolling to internal links (starting with #)
+                if (link.getAttribute('href').startsWith('#')) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                }
+            });
+
+            // --- Fade-in on Scroll Animation ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    } else {
+                        // Optional: remove class to re-animate on scroll up
+                        // entry.target.classList.remove('show');
+                    }
+                });
+            });
+
+            const hiddenElements = document.querySelectorAll('.hidden');
+            hiddenElements.forEach((el) => observer.observe(el));
+
+        });
+    </script>
+</body>
+</html>
